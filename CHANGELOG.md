@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0]() (2026-08-25)
+
+### Features
+
+* Add `cluster_upgrade_policy_support_type`, so a consumer can declare the control-plane support
+  type (`STANDARD` / `EXTENDED`) instead of leaving it to the AWS default. Null by default, which
+  emits no `upgrade_policy` block and leaves an existing cluster exactly as it is.
+
 ## [1.0.2]() (2025-10-27)
 
 ### Bug fixes
