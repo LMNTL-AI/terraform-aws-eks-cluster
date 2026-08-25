@@ -1,4 +1,11 @@
-> **ARCHIVED — read-only mirror.** This module is developed in [`c0x12c/terraform-modules`](https://github.com/c0x12c/terraform-modules) and published to `terraform.c0x12c.com`. This repository is a frozen mirror that only backs legacy `registry.terraform.io/c0x12c/<name>/<provider>` versions. Do not open issues or PRs here.
+> **This is LMNTL-AI's own copy, and it is where this module is now developed.** It began as a fork
+> of `c0x12c/terraform-aws-eks-cluster` and was re-homed off the contractor registry in
+> `LMNTL-AI/service-platform#1542`; `LMNTL-AI/infra-terraform` consumes it by pinned commit SHA. The
+> upstream mirror carries an archived-state notice telling readers not to open PRs — that notice is
+> upstream's and does **not** apply here. Open issues and PRs against this repository.
+>
+> Changes here reach a cluster only when `infra-terraform` re-pins its `?ref=` SHA, so a merge to
+> `master` deploys nothing on its own.
 
 # AWS EKS Terraform module
 

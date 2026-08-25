@@ -269,6 +269,26 @@ variable "public_access_cidrs" {
   description = "List of CIDR blocks allowed for public access to the Kubernetes API server endpoint."
 }
 
+variable "cluster_upgrade_policy_support_type" {
+  description = <<-EOT
+    EKS support type for the control plane: "STANDARD" or "EXTENDED".
+
+    EXTENDED keeps a Kubernetes version serviceable past its standard-support window and is billed
+    per cluster-hour for the whole extended period; STANDARD ends support at the standard date and
+    is not billed. AWS applies a default when the field is absent, and that default is not stable
+    across cluster versions, so leaving this null means "whatever AWS decides" rather than "off".
+
+    Null by default: an existing cluster that has never declared a support type is left untouched.
+  EOT
+  type        = string
+  default     = null
+
+  validation {
+    condition     = var.cluster_upgrade_policy_support_type == null || contains(["STANDARD", "EXTENDED"], var.cluster_upgrade_policy_support_type)
+    error_message = "cluster_upgrade_policy_support_type must be either \"STANDARD\" or \"EXTENDED\", or null to leave the cluster's current support type alone."
+  }
+}
+
 variable "enable_access_config" {
   description = "Enable or disable access configuration for the Kubernetes cluster."
   type        = bool

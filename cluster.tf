@@ -18,6 +18,16 @@ resource "aws_eks_cluster" "master" {
     public_access_cidrs     = var.public_access_cidrs
   }
 
+  # Left absent when null so that clusters which have never declared a support type keep whatever
+  # AWS defaults them to, rather than this module silently adopting one on the next apply.
+  dynamic "upgrade_policy" {
+    for_each = var.cluster_upgrade_policy_support_type == null ? [] : [var.cluster_upgrade_policy_support_type]
+
+    content {
+      support_type = upgrade_policy.value
+    }
+  }
+
   enabled_cluster_log_types = var.enabled_cluster_log_types
 
   version = var.cluster_version
